@@ -1,10 +1,12 @@
 const { Server } = require("socket.io");
-const io = new Server(Number(3005), {
+const dotenv = require('dotenv').config()
+const port = process.env.port
+const io = new Server(Number(port), {
   cors: {
     origin: "*",
   },
 });
-console.log("socket running on port", 3005);
+console.log("socket running on port", port);
 let clients = [];
 io.on("connection", (socket) => {
   socket.on("CONNECT", (data) => {
